@@ -61,7 +61,6 @@ public class NaoController {
 	
 
 	//ユーザー詳細情報表示
-	
 	@GetMapping("/{id}")
 	public String displayView(@PathVariable Long id, Model model) {
 		User user =userService.findById(id);
