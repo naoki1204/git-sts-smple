@@ -39,15 +39,15 @@ public class UserService {
 	
 //カテゴリー検索
 	
-	public List<User> search(String name,String email,String phone){
+	public List<User> search(String name,String email,String phone,String birthplace){
 		
 		List<User> result =new ArrayList<User>();
 		
-		if("".equals(name) && "".equals(email) && "".equals(phone)) {
+		if("".equals(name) && "".equals(email) && "".equals(phone) && "".equals(birthplace)) {
 			result=userRepository.findAll();
 		}
 		else {
-			result =userDataDaoImpl.search(name, email, phone);
+			result =userDataDaoImpl.search(name, email, phone,birthplace);
 		}
 		return result;
 		

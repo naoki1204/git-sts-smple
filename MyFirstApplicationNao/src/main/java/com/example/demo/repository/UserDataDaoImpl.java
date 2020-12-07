@@ -30,7 +30,7 @@ public class UserDataDaoImpl implements UserDataDao {
 	
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<User> search(String name,String email,String phone){
+	public List<User> search(String name,String email,String phone,String birthplace){
 		
 		StringBuilder sql = new StringBuilder();
 		sql.append("SELECT b From User b WHERE ");
@@ -39,6 +39,7 @@ public class UserDataDaoImpl implements UserDataDao {
 		boolean nameFlg  = false;
         boolean emailFlg = false;
         boolean phoneFlg  = false;
+        boolean birthplaceFlg  = false;
       
         
         if(!"".equals(name)) {
@@ -61,11 +62,19 @@ public class UserDataDaoImpl implements UserDataDao {
             andFlg    = true;
         }
         
+        if(!"".equals(birthplace)) {
+            if (andFlg) sql.append(" AND ");
+            sql.append("b.birthplace LIKE :birthplace");
+            birthplaceFlg = true;
+            andFlg    = true;
+        }
+        
         Query query = entityManager.createQuery(sql.toString());
         
         if (nameFlg) query.setParameter("name", "%" + name + "%");
         if (emailFlg) query.setParameter("email", "%" + email + "%");
         if (phoneFlg) query.setParameter("phone", "%" + phone + "%");
+        if (birthplaceFlg) query.setParameter("birthplace", "%" + birthplace + "%");
         return query.getResultList();
         
 	}

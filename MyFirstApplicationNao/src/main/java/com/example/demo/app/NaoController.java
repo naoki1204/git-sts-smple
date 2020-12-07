@@ -36,7 +36,7 @@ public class NaoController {
     EntityManager entityManager;
 	
 //	一覧画面を表示
-//	@RequestMapping(value="/list",method=RequestMethod.GET)
+
 	@GetMapping("list")
 	public String displyList(Model model,@ModelAttribute("formModel") User user) {
 		
@@ -53,7 +53,7 @@ public class NaoController {
 		
 		model.addAttribute("msg", "検索結果");
 		
-		List<User> result=userService.search(user.getName(), user.getEmail(), user.getPhone());
+		List<User> result=userService.search(user.getName(), user.getEmail(), user.getPhone(),user.getBirthplace());
 		
 		model.addAttribute("userlist", result);
 		return "/list";
