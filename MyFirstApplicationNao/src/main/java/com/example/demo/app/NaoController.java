@@ -92,6 +92,7 @@ public class NaoController {
 		userUpdateRequest.setPhone(user.getPhone());
 		userUpdateRequest.setBirthplace(user.getBirthplace());
 		userUpdateRequest.setBirthschool(user.getBirthschool());
+		userUpdateRequest.setWorklocation(user.getWorklocation());
 		model.addAttribute("userUpdateRequest",userUpdateRequest);
 		return "/edit";
 		

@@ -37,6 +37,9 @@ public class User implements Serializable{
 	@Column(name="birthschool")
 	private String birthschool;
 	
+	@Column(name="worklocation")
+	private String worklocation;
+	
 	@Column(name="create_date")
 	private Date createDate;
 	
