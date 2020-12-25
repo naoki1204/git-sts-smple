@@ -26,4 +26,7 @@ public class UserRequest implements Serializable{
 	@NotEmpty(message="出身地を入力してください")
 	private String birthplace;
 	
+	@NotEmpty(message="出身高を入力してください")
+	private String birthschool;
+	
 }

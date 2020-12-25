@@ -28,6 +28,11 @@
       <th class="cell_required"></th>
       <td th:text="*{birthplace}"></td>
     </tr>
+    <tr>
+      <th class="cell_title">出身校</th>
+      <th class="cell_required"></th>
+      <td th:text="*{birthschool}"></td>
+    </tr>
   </table>
   <div class="btn_area_center">
     <a th:href="@{/{id}/edit(id=*{id})}">編集</a>
