@@ -31,6 +31,7 @@
 				<th>電話番号</th>
 				<th>出身地</th>
 				<th>出身校</th>
+				<th>勤務地</th>
 				<th>登録日時</th>
 				<th>更新日時</th>
 				<th>削除日時</th>
@@ -42,6 +43,7 @@
 		        <td th:text="*{phone}"></td>
 		        <td th:text="*{birthplace}"></td>
 		        <td th:text="*{birthschool}"></td>
+		        <td th:text="*{worklocation}"></td>
 		        <td class="center" th:text="${#dates.format(user.createDate, 'yyyy/MM/dd')}"></td>
 				<td class="center" th:text="${#dates.format(user.updateDate, 'yyyy/MM/dd')}"></td>
 		        <td class="center" th:text="${#dates.format(user.deleteDate, 'yyyy/MM/dd')}"></td>

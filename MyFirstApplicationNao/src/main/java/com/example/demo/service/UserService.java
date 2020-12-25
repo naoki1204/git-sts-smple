@@ -70,6 +70,7 @@ public class UserService {
 		user.setPhone(userUpdateRequest.getPhone());
 		user.setBirthplace(userUpdateRequest.getBirthplace());
 		user.setBirthschool(userUpdateRequest.getBirthschool());
+		user.setWorklocation(userUpdateRequest.getWorklocation());
 		user.setUpdateDate(new Date());
 		userRepository.save(user);
 	}
@@ -91,6 +92,7 @@ public class UserService {
 		user.setPhone(userRequest.getPhone());
 		user.setBirthplace(userRequest.getBirthplace());
 		user.setBirthschool(userRequest.getBirthschool());
+		user.setWorklocation(userRequest.getWorklocation());
 		user.setCreateDate(now);
 		user.setUpdateDate(now);
 		
