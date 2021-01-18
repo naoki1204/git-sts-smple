@@ -49,13 +49,15 @@ public class NaoController {
 	
 	//検索結果
 	@PostMapping("list")
-	public String select(@ModelAttribute("formModel") User user,Model model) {
+	public String select(@ModelAttribute("formModel") User user,
+			BindingResult result,Model model) {
 		
 		model.addAttribute("msg", "検索結果");
 		
-		List<User> result=userService.search(user.getName(), user.getEmail(), user.getPhone(),user.getBirthplace());
+		List<User> resultAnswer=userService.search(user.getName(), user.getEmail(), user.getPhone(),user.getBirthplace(),
+				user.getBirthschool(),user.getCreateDate());
 		
-		model.addAttribute("userlist", result);
+		model.addAttribute("userlist", resultAnswer);
 		return "/list";
 	}
 	

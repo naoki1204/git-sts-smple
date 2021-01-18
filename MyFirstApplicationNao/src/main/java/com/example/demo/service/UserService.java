@@ -31,6 +31,8 @@ public class UserService {
 		return userRepository.findAll();
 	}
 	
+	
+	
 //	ユーザー主キー検索
 	
 	public User findById(Long id) {
@@ -39,15 +41,17 @@ public class UserService {
 	
 //カテゴリー検索
 	
-	public List<User> search(String name,String email,String phone,String birthplace){
+	public List<User> search(String name,String email,String phone,String birthplace,
+			String birthschool, Date createDate){
 		
 		List<User> result =new ArrayList<User>();
 		
-		if("".equals(name) && "".equals(email) && "".equals(phone) && "".equals(birthplace)) {
+		if("".equals(name) && "".equals(email) && "".equals(phone) && "".equals(birthplace)
+				&&null==birthschool &&null==createDate) {
 			result=userRepository.findAll();
 		}
 		else {
-			result =userDataDaoImpl.search(name, email, phone,birthplace);
+			result =userDataDaoImpl.search(name, email, phone,birthplace,birthschool,createDate);
 		}
 		return result;
 		

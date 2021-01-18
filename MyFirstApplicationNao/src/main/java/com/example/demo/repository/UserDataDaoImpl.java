@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import com.example.demo.Dao.UserDataDao;
 import com.example.demo.entity.User;
 
+import java.util.Date;
 import java.util.List;
 
 
@@ -28,9 +29,12 @@ public class UserDataDaoImpl implements UserDataDao {
 		entityManager=manager;
 	}
 	
+
+	
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<User> search(String name,String email,String phone,String birthplace){
+	public List<User> search(String name,String email,String phone,String birthplace,
+			String birthschool,Date createDate){
 		
 		StringBuilder sql = new StringBuilder();
 		sql.append("SELECT b From User b WHERE ");
@@ -40,6 +44,8 @@ public class UserDataDaoImpl implements UserDataDao {
         boolean emailFlg = false;
         boolean phoneFlg  = false;
         boolean birthplaceFlg  = false;
+        boolean birthschoolFlg  = false;
+        boolean createDateFlg  = false;
       
         
         if(!"".equals(name)) {
@@ -52,29 +58,43 @@ public class UserDataDaoImpl implements UserDataDao {
             if (andFlg) sql.append(" AND ");
             sql.append("b.email LIKE :email");
             emailFlg = true;
-            andFlg    = true;
+            andFlg=true;
         }
         
         if(!"".equals(phone)) {
             if (andFlg) sql.append(" AND ");
             sql.append("b.phone LIKE :phone");
             phoneFlg = true;
-            andFlg    = true;
+            andFlg= true;
         }
         
-        if(!"".equals(birthplace)) {
+        if(!"".equals(birthplace) ) {
             if (andFlg) sql.append(" AND ");
             sql.append("b.birthplace LIKE :birthplace");
             birthplaceFlg = true;
-            andFlg    = true;
+            andFlg  = true;
         }
         
+        if(birthschool !=null) {
+            if (andFlg) sql.append(" AND ");
+            sql.append("b.birthschool=:birthschool");
+            birthschoolFlg = true;
+            andFlg= true;
+        }
+        if(createDate !=null) {
+            if (andFlg) sql.append(" AND ");
+            sql.append("b.createDate=:createDate");
+            createDateFlg = true;
+            andFlg= true;
+        }
         Query query = entityManager.createQuery(sql.toString());
         
         if (nameFlg) query.setParameter("name", "%" + name + "%");
         if (emailFlg) query.setParameter("email", "%" + email + "%");
         if (phoneFlg) query.setParameter("phone", "%" + phone + "%");
         if (birthplaceFlg) query.setParameter("birthplace", "%" + birthplace + "%");
+        if (birthschoolFlg) query.setParameter("birthschool",birthschool);
+        if (createDateFlg) query.setParameter("createDate", createDate);
         return query.getResultList();
         
 	}
