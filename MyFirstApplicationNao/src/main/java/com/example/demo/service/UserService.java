@@ -42,16 +42,16 @@ public class UserService {
 //カテゴリー検索
 	
 	public List<User> search(String name,String email,String phone,String birthplace,
-			String birthschool, Date createDate){
+			String birthschool){
 		
 		List<User> result =new ArrayList<User>();
 		
 		if("".equals(name) && "".equals(email) && "".equals(phone) && "".equals(birthplace)
-				&&null==birthschool &&null==createDate) {
+				&&null==birthschool) {
 			result=userRepository.findAll();
 		}
 		else {
-			result =userDataDaoImpl.search(name, email, phone,birthplace,birthschool,createDate);
+			result =userDataDaoImpl.search(name, email, phone,birthplace,birthschool);
 		}
 		return result;
 		

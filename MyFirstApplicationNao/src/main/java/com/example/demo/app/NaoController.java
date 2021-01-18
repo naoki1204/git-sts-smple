@@ -55,7 +55,7 @@ public class NaoController {
 		model.addAttribute("msg", "検索結果");
 		
 		List<User> resultAnswer=userService.search(user.getName(), user.getEmail(), user.getPhone(),user.getBirthplace(),
-				user.getBirthschool(),user.getCreateDate());
+				user.getBirthschool());
 		
 		model.addAttribute("userlist", resultAnswer);
 		return "/list";
