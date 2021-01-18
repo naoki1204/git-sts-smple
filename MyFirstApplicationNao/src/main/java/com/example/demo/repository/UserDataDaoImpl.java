@@ -34,7 +34,7 @@ public class UserDataDaoImpl implements UserDataDao {
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<User> search(String name,String email,String phone,String birthplace,
-			String birthschool,Date createDate){
+			String birthschool){
 		
 		StringBuilder sql = new StringBuilder();
 		sql.append("SELECT b From User b WHERE ");
@@ -45,7 +45,7 @@ public class UserDataDaoImpl implements UserDataDao {
         boolean phoneFlg  = false;
         boolean birthplaceFlg  = false;
         boolean birthschoolFlg  = false;
-        boolean createDateFlg  = false;
+       
       
         
         if(!"".equals(name)) {
@@ -81,12 +81,7 @@ public class UserDataDaoImpl implements UserDataDao {
             birthschoolFlg = true;
             andFlg= true;
         }
-        if(createDate !=null) {
-            if (andFlg) sql.append(" AND ");
-            sql.append("b.createDate=:createDate");
-            createDateFlg = true;
-            andFlg= true;
-        }
+     
         Query query = entityManager.createQuery(sql.toString());
         
         if (nameFlg) query.setParameter("name", "%" + name + "%");
@@ -94,7 +89,6 @@ public class UserDataDaoImpl implements UserDataDao {
         if (phoneFlg) query.setParameter("phone", "%" + phone + "%");
         if (birthplaceFlg) query.setParameter("birthplace", "%" + birthplace + "%");
         if (birthschoolFlg) query.setParameter("birthschool",birthschool);
-        if (createDateFlg) query.setParameter("createDate", createDate);
         return query.getResultList();
         
 	}

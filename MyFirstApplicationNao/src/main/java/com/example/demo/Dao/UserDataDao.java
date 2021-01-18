@@ -8,6 +8,6 @@ import com.example.demo.entity.User;
 
 public interface UserDataDao extends Serializable{
 	
-	public List<User> search(String name,String email,String phone,String birthplace,String birthschool,Date createDate);
+	public List<User> search(String name,String email,String phone,String birthplace,String birthschool);
 
 }
